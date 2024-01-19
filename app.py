@@ -1,13 +1,12 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
-app.config.from_object(__name__)
 
 @app.route('/')
 def home_page():
-    return render_template('form1.html')
+    return render_template('index.html')
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/result', methods=['GET','POST'])
 def Ans():
     if request.method=='POST':
         num1 = request.form.get("num1", type=int)
@@ -28,7 +27,7 @@ def Ans():
         else:
             result = 'Error!'
         output = result
-        return render_template('form1.html', output=output)
+        return render_template('result.html', output=output)
 
 
 if __name__ == '__main__':
